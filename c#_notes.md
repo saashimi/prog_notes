@@ -39,3 +39,21 @@ public class Program
 ```
 We ran 
 `c:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe hello.cs` in the command line to compile hello.cs example above.
+
+* Created a new project.
+* Went over the <b>Solution Explorer</b> to add new files.
+
+To run:
+* Debug Menu -> Start without debugging. 
+    * Will begin compiling and execute the program.
+
+#### Debugging
+* Set breakpoints in VisualStudio by clicking on the left hand margin of the Program.cs window.
+* F10 to step over line.
+
+To pass args when in the debugger, right click on `<program name>.cs` and click on properties.
+* in debug settings, can enter command line arguments in the text box. 
+
+Introduced `Console.Readline();`.
+
+variables are <b>camelCase.</b>
