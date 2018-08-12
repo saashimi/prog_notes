@@ -2,6 +2,8 @@
 
 From Pluralsight stuff.
 
+### General
+
 #### Common Language Runtime 
 * CLR manages your application.
 * Memory management.
@@ -57,3 +59,82 @@ To pass args when in the debugger, right click on `<program name>.cs` and click 
 Introduced `Console.Readline();`.
 
 variables are <b>camelCase.</b>
+
+### Objects
+
+In C#, most programmers follow the convension that each class is stored in its own file. 
+
+* In Solutions Explorer, right click on Project, and click add --> class.
+
+Class members define
+1. State
+2. Behavior
+
+```csharp
+namespace Grades
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            GradeBook book = new GradeBook();
+            book.AddGrade(91);
+            book.AddGrade(89.5f);
+        }
+    }
+}
+```
+
+We needed `book.AddGrade(89.5f)` to force it as a floating point instead of a double.
+
+```csharp
+namespace Grades
+{
+    class GradeBook
+    {
+        public void AddGrade(float grade)
+        {
+            grades.Add(grade);
+        }
+        List<float> grades = new List<float>();
+    }
+}
+```
+
+#### Constructors
+`GradeBook book = new GradeBook();
+
+```csharp
+public GradeBook()
+{
+    // ... initialization code
+}
+```
+`ctor + TAB` will cause Visual Studio to generate the constructor code.
+
+Remember the differences between classes vs variables
+* A class is a blueprint for creating objects.
+* A class can also be used to type a variable
+    * A variable can refer to an object of the same type.
+
+#### Keywords
+
+Encapsulation: enclosing or hiding details.
+
+`public` makes a class member publicly available. Can be accessiblie from outside the class.
+
+But if not explicitly called out, the default behavior in C# is to make methods `private` (only useable inside the class).
+
+`static` are members of a class without creating an instance:
+```csharp
+public static float MinimumGrade = 0
+public static float MaximumGrade = 100
+```
+
+```csharp
+public GradeStatistics ComputeStatistics()
+```
+`ComputeStatistics()` returns a `GradeStatistics` object
+
+`cw + TAB + TAB` will do a `Console.WriteLine()`
+
