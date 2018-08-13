@@ -1,8 +1,8 @@
 # C# Notes
 
-From Pluralsight stuff.
-
 ### General
+
+Think of methods as the OOP equivalent of functions in scripting languages.
 
 #### Common Language Runtime 
 * CLR manages your application.
@@ -23,7 +23,8 @@ public static void Main()
     }
 }
 ```
-`Main()` is a method. This method may be called from other places so that nested code can be executed and run. 
+`Main()` is a method. This method may be called from other places so that 
+nested code can be executed and run. 
 
 `DateTime` is a part of the DateTime class library.
 * `.Now.DayOfWeek` and `.Monday` are methods.
@@ -40,7 +41,8 @@ public class Program
 }
 ```
 We ran 
-`c:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe hello.cs` in the command line to compile hello.cs example above.
+`c:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe hello.cs` in the command 
+line to compile hello.cs example above.
 
 * Created a new project.
 * Went over the <b>Solution Explorer</b> to add new files.
@@ -53,7 +55,8 @@ To run:
 * Set breakpoints in VisualStudio by clicking on the left hand margin of the Program.cs window.
 * F10 to step over line.
 
-To pass args when in the debugger, right click on `<program name>.cs` and click on properties.
+To pass args when in the debugger, right click on `<program name>.cs` and click
+on properties.
 * in debug settings, can enter command line arguments in the text box. 
 
 Introduced `Console.Readline();`.
@@ -62,7 +65,8 @@ variables are <b>camelCase.</b>
 
 ### Objects
 
-In C#, most programmers follow the convension that each class is stored in its own file. 
+In C#, most programmers follow the convension that each class is stored in its 
+own file. 
 
 * In Solutions Explorer, right click on Project, and click add --> class.
 
@@ -85,7 +89,8 @@ namespace Grades
 }
 ```
 
-We needed `book.AddGrade(89.5f)` to force it as a floating point instead of a double.
+We needed `book.AddGrade(89.5f)` to force it as a floating point instead of a 
+double.
 
 ```csharp
 namespace Grades
@@ -121,9 +126,11 @@ Remember the differences between classes vs variables
 
 Encapsulation: enclosing or hiding details.
 
-`public` makes a class member publicly available. Can be accessiblie from outside the class.
+`public` makes a class member publicly available. Can be accessiblie from 
+outside the class.
 
-But if not explicitly called out, the default behavior in C# is to make methods `private` (only useable inside the class).
+But if not explicitly called out, the default behavior in C# is to make methods
+ `private` (only useable inside the class).
 
 `static` are members of a class without creating an instance:
 ```csharp
@@ -137,4 +144,86 @@ public GradeStatistics ComputeStatistics()
 `ComputeStatistics()` returns a `GradeStatistics` object
 
 `cw + TAB + TAB` will do a `Console.WriteLine()`
+`testm + TAB + TAB` will insert a `[TestMethod]`.
 
+### Types
+`/* */` for comment blocks.
+
+Pluralsight goes over pointers to objects for a little bit. Created a new folder in the Grades.Tests Project. Used Thunder's methodology of writing unit tests to understand the workings of the program. 
+
+<b>Variables hold the value.</b>
+* No pointers, no references.
+
+Many built-in primitives are value types
+* int, double, float.
+
+How to tell the difference between value types and reference types?
+
+`struct` definitions create value types.
+
+You want to write a class by default. You use `struct` to represent a single value, like `DateTime.`
+
+```csharp
+public struct DateTime
+{
+    // ...
+}
+```
+An enum creates a value type
+
+```csharp
+public enum PayrollType
+{
+    Contractor = 1,
+    Salaried, 
+    Executive,
+    Hourly
+}
+
+if(employee.Role == PayrollType.Hourly) 
+{
+    // ...
+}
+```
+
+Hovering over the object in source code and pressing `F12` will take us to the source code. The source code can reveal if the object is a value or reference type.
+
+### Method Parameters
+
+Parameters pass "by value"
+* Reference types pass a copy of the reference.
+* Value types pass a copy of the value. 
+
+### Immutability
+
+Value types are usually immutable. 
+
+```csharp
+string name = " SomeName ";
+name.Trim();
+```
+This is wrong. 
+
+```csharp
+string name = " SomeName ";
+name = name.Trim();
+```
+Must set the variable to itself.
+
+### Arrays
+Manage a collection of variables. 
+* Fixed size
+* Always 0 index
+
+```csharp
+const int numberOfStudents = 4;
+int[] scores = new int[numberOfStudents];
+
+int totalScore = 0;
+foreach(int score in scores)
+{
+    totalScore += score;
+}
+```
+
+`int` is the type that the array will hold.
