@@ -197,6 +197,7 @@ Parameters pass "by value"
 ### Immutability
 
 Value types are usually immutable. 
+Strings behave like a value type.
 
 ```csharp
 string name = " SomeName ";
@@ -212,7 +213,7 @@ Must set the variable to itself.
 
 ### Arrays
 Manage a collection of variables. 
-* Fixed size
+* <b>Arrays are a fixed size.</b> Lists can be grown.
 * Always 0 index
 
 ```csharp
@@ -227,3 +228,53 @@ foreach(int score in scores)
 ```
 
 `int` is the type that the array will hold.
+
+### Methods
+* Methods define behavior (Think of them like Python / R) functions
+* Every method has a return type
+    * `void` if no value returned.
+* Every method has zero or more parameters
+    * use `params` keyword to accept a variable number of parameters
+* Every method has a signature.
+    * `Name` of method + parameters
+    * Method overloading allows us to use methods with the same name, but differing parameters.
+
+### Fields and Properties
+* Fields are variables of a class (think Name Fields)
+    * Fields are typically private and hold data.
+    * some developers use `_underscores` to name private fields.
+
+```csharp
+public class Animal
+{
+    private readonly string _name;
+
+    public Animal(string name)
+    {
+        _name = name;
+    }
+}
+```
+* A property can define a get and/or set accessor. 
+    * Often used to expose and control fields.
+    * Properties are typically <b>public.</b>
+    * Properties are all about state.
+* Capitalize Property names and Method names.
+
+```csharp
+private string _name;
+
+public string Name
+{
+    get { return _name; }
+    set
+    {
+        if (!String.IsNullOrEmpty(value))
+        {
+            _name = value;
+        }
+    }
+}
+```
+* Some .NET libraries will only look or move properties vs fields.
+    * Set accessor can provide validation and protect state.
