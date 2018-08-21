@@ -278,3 +278,270 @@ public string Name
 ```
 * Some .NET libraries will only look or move properties vs fields.
     * Set accessor can provide validation and protect state.
+
+### Events
+* Allows a class to send notifications to other classes or objects.
+    * Publisher raises the event.
+    * One or more subscribers process the event.
+
+### Delegates
+To understand events, we must understand delegates.
+* Delegates allow you to have a variable that references a method. 
+
+```csharp
+public delegate void Writer(string message);
+
+// Elsewhere...
+public class Logger
+{
+    public void WriteMessage(String message)
+    {
+        Console.WriteLine(message);
+    }
+}
+
+// Elsewhere...
+Logger logger = new Logger();
+// Note no parentheses after logger.WriteMessage:
+Writer writer = new Writer(logger.WriteMessage); 
+writer("Success!!");
+```
+
+Can use `+=` to reference multiple methods.
+
+### Events Revisited
+* Convention is to pass the old values and the new ones as parameters.
+
+`prop` + `TAB` + `TAB` to get property
+
+### Control Flow
+Can have ternary operators 
+
+```csharp
+string pass = age > 20 ? "pass" : "nopass";
+```
+* `switch` and `case` statements,
+* `if`, `else if`, `else` statements.
+
+### Iterating
+```csharp
+// For each item in an array.
+// The preferred way to create a loop when possible.
+int[] ages = {2, 21, 40, 72, 100}; // Array initialization
+foreach (int value in ages)
+{
+    Console.WriteLine(value);
+}
+```
+
+```csharp
+// For a given number of iterations.
+for (int i = 0; i < age; i++)
+{
+    Console.WriteLine(i)
+}
+```
+
+```csharp
+while(age > 0)
+{
+    age -= 1;
+    Console.WriteLine(age);
+}
+```
+```csharp
+// Execute code at least once
+do
+{
+    age++;
+    Console.WriteLine(age)
+} while (age < 100);
+```
+
+`for` + `Tab` + `Tab` to generate a for loop.
+
+### Jumping
+`break`, `continue`, `goto`, `return`, `throw`.
+Typically don't use `goto` these days.
+
+```csharp
+foreach(int age in ages) {
+    if (age==2) {
+        continue;
+    }
+    if (age==21) {
+        break;
+    }
+}
+```
+You can use return in a void method, but you can't return a value to the caller. 
+```csharp
+void CheckAges()
+{
+    foreach (int age in ComputerAges())
+    {
+        if (age == 21) return;
+    }
+}
+```
+
+### Throwing
+
+Use `throw` to raise an exeption. Exceptions provide type safe and structured error handling in .NET.
+
+```csharp
+if (age == 21)
+{
+    throw new ArgumentException("21 is not a legal value");
+}
+```
+Handle exceptions using a try block
+```csharp
+try
+{
+    ComputeStatistics();
+}
+catch(DivideByZeroException ex)
+{
+    Console.WriteLine(ex.Message);
+    Console.WriteLine(ex.StackTrace);
+}
+```
+Chaining Catch Blocks
+* Place most specific type in the first catch clause
+* Catching a System.Exception catches everything
+    * Except for a few "special" exceptions.
+
+```csharp
+try{
+    // ...
+}
+catch(DivideByZeroException ex)
+{
+    // ...
+}
+catch(Exception ex)
+{
+    // ...
+}
+```
+Finally clause adds finalization code
+* Executes even when control jumps out of scope
+
+```csharp
+FileStream file = new FileStream("file.txt", FileMode.Open);
+try
+{
+}
+finally
+{
+    file.Close();
+}
+
+// Elsewhere...
+using(FileStream file1 = new FileStream("in.txt", FileMode.Open)
+using(FileStream file2 = new FileStream("out.txt",         FileMode.Create)))
+{
+    // ...
+}
+```
+
+`CTRL` + `.` to refactor highlighted code via `ExtractMethod`.
+
+## Object Oriented Programming
+### Encapsulation
+Hiding complexity and building models. 
+
+### Inheritance
+One class inherits methods from another class.
+
+```csharp
+public class A
+{
+    public void DoWork()
+    {
+        // ... work!
+    }
+}
+
+public class B : A // : denotes the inheritance
+{
+
+}
+
+public class C : B
+{
+
+}
+```
+
+public, private, protected.
+
+`protected` can be accessed by code from a derived class.
+
+### Polymorphism
+* One variable can point to different types of objects.
+* Objects can behave differently depending on their type.
+
+```csharp
+public class A : Object
+{
+    public virtual void DoWork()
+    {
+        // ...
+    }
+}
+
+public class B : A
+{
+    public override void DoWork()
+    {
+        // optionally call into base ...
+        base.DoWork();
+    }
+}
+```
+`virtual` type and `override` type.
+
+### Abstract Classes
+Abstract classes cannot be instantiated.
+* Can contain abstract members.
+
+```csharp
+public abstract class Window
+{
+    public virtual string Title {get ; set; }
+
+    public virtual void Draw()
+    {
+        // ... drawing code
+    }
+
+    public abstract void Open();
+}
+```
+An abstract method is implicitly a virtual method.
+
+### Interfaces
+Interfaces contain no implementation details.
+* Defines only the signatures of methods, events, and properties.
+* A type can implement multiple interfaces. 
+
+```csharp
+// Interfaces are defined with a leading capital I.
+public interface IWindow
+{
+    string Title { get; set; }
+    void Draw();
+    void Open();
+}
+```
+K. Scott Allen prefers interfaces over abstract base classes.
+
+
+#### Important Interfaces
+* `IDisposable`, Release resources 
+* `IEnumerable`, Supports iteration
+* `INotifyPropertyChange`, Raises events when properties change
+* `IComparable`, Compares for sorting
+
