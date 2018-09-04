@@ -538,10 +538,8 @@ public interface IWindow
 ```
 K. Scott Allen prefers interfaces over abstract base classes.
 
-
 #### Important Interfaces
 * `IDisposable`, Release resources 
 * `IEnumerable`, Supports iteration
 * `INotifyPropertyChange`, Raises events when properties change
 * `IComparable`, Compares for sorting
-
