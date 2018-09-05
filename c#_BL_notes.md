@@ -19,7 +19,6 @@ public Customer Retrieve(int customerId)
 // `Customer` is the return type.
 
 ``` 
-
 Overloading : describing methods that have the same name, but different parameters.
 * E.g. `Retrieve()` is called to return a list, whereas `Retrieve(1001)` returns a specific CustomerId.
 
@@ -32,3 +31,12 @@ Nullable type:
 public Decimal? CurrentPrice { get; set; }
 ```
 Allows definition of the value or a null.
+
+#### Collaboration
+A "uses a" relationship. Objects use instances from one or more classes.
+
+#### Composition
+A "has a" relationship. Think of properties from other classes.
+
+#### Ids
+References an integer instead of specific objects. Simpler; does not have to reference individual object properties.
