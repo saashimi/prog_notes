@@ -1,3 +1,9 @@
+The Four Pillars of OOP
+* Abstraction
+* Encapsulation
+* Inheritance
+* Polymorphism
+
 ## Building Entity Classes
 
 Shortcuts
@@ -40,3 +46,26 @@ A "has a" relationship. Think of properties from other classes.
 
 #### Ids
 References an integer instead of specific objects. Simpler; does not have to reference individual object properties.
+
+#### Inheritance
+An "is a" relationship. Create base and derived classes. Can only inherit from one class at a time in C#. But supports inheritance chaining. 
+
+Overriding base class functions. Recommend 
+```csharp
+public override Tostring() 
+{
+    // override here
+}
+```
+
+#### Building Base Classes
+* Abstract classes cannot be instantiated.
+* Concrete classes can be instantiated.
+* `sealed` classes cannot be extended through inheritance.
+* `public` means any class can access the class.
+* `private` means that only inherited classes can access the class.
+* `protected` means only the base class and only the derived classes can access teh class.
+
+A derived class cannot override a base class member unless the base class member is declared specifically to allow it to be overridden using the `abstract` or `virtual` keyword.
+
+The derived member must then use the `override` keyword to explicityly indicate that the method is overridden.
