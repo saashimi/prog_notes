@@ -11,6 +11,22 @@ class Car:
     pass
 ```
 
+### Organizing Larger Programs
+#### Recommended Layout
+```
+project_name
+|__ __main__.py
+|__ project_name
+|   |__ __init__.py
+|   |__ more_source.py
+|   |__ subpackage1
+|       |__ __init__.py
+|______ test
+|        |__ __init__.py
+|        |__ test_code.py
+|__ setup.py
+```
+
 #### Singleton Pattern in Python
 Modules are <b>singletons.</b>
 
