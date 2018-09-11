@@ -150,17 +150,32 @@ def raise_to(exp):
 `nonlocal` introduces names from the enclosing namespace into the local namespace.
 
 #### Function decorators
-Modify or enhance functions without changing their definition.
+Modify or enhance functions without changing their definition. Decorators are implemented as callables that take and return other callables.
 * Replace, enhance, or modify existing functions
 * Does not change the original function definition
 * Calling code does not need to change
 * Decorator mechanism uses the modified function's original name
 
+```python
+"""
+Takes the callable `f` and returns another callable `wrap`
+"""
+
+def escape_unicode(f): 
+    #              ^-- This is the function to be decorated.
+    def wrap(*args, **kwargs):
+        x = f(*args, **kwargs)
+        return acii(x)
+
+    return wrap
+
+@escape_unicode
+def northern_city()
+    return 'Tromsø'
+```
+
 In classes, the class objects themselves are not decorators. The instances of the class can be used as decorators.
 
-```python
-
-```
 
 Multiple decorators
 ```python
@@ -172,3 +187,22 @@ def some_function():
 
 '''Some function is passed through decorator3. Callable returned by decorator3 is passed to decorator2, and then the returned callable is passed to decorator1, which is then bound to some_function().'''
 ```
+
+#### functools.wraps()
+Properly update metadata on wrapped functions.
+
+```python
+import functools
+
+def noop(f):
+    @functools.wraps(f)
+    def noop_wrapper():
+        return f()
+    return noop_wrapper
+
+@noop
+def hello():
+    "Print a well-known message."
+    print('Hello, world!')
+```
+
