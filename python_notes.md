@@ -116,6 +116,8 @@ Use builtin function `callable()`.
 #### Closures
 Think of closures as the local scope "closing over" the objects it needs, preventing them from being garbage collected. Refer to `__closure__` method.
 
+It helps to think of local functions as lambdas that are much more general and powerful.
+
 ```python
 def enclosing():
     x = 'closed over'
@@ -189,7 +191,7 @@ def some_function():
 ```
 
 #### functools.wraps()
-Properly update metadata on wrapped functions.
+Properly update metadata on wrapped functions. `__name__` and `__doc__` are properly implemented.
 
 ```python
 import functools
@@ -204,5 +206,81 @@ def noop(f):
 def hello():
     "Print a well-known message."
     print('Hello, world!')
+```
+
+#### Static Methods
+Static methods allow you associate methods with the class, rather than with instances of the class.
+* No access needed to either <b>class</b> or <b>instance</b> objects.
+* Most likely and implementation detail of the class.
+* May be able to be moved to become a module-scope function.
+
+```python
+class ShippingContainer:
+    
+    next_serial = 1337
+
+    @staticmethod
+    def _get_next_serial():
+        # Note the leading underscore, to denote a `private` function.
+        result = ShippingContainer.next_serial
+        ShippingContainer.next_serial += 1
+        return result
+
+    def __init__(self, owner_code, contents):
+        self.owner_code = owner_code
+        self.contents = contents
+        self.serial = ShippingContainer._get_next_serial()
+        #                  ^-- As opposed to `self._get_next_serial`
+```
+
+#### Class Methods
+Requires access to the class object to call other class methods or the constructor.
+* Use if you need access to class attributes.
+
+```python
+class ShippingContainer:
+    
+    next_serial = 1337
+
+    @classmethod
+    def _get_next_serial(cls):
+        #                 ^-- By convention, pass the class object. 
+        result = cls.next_serial
+        cls.next_serial += 1
+        return result
+    
+    @classmethod:
+    def create_empty(cls, owner_code):
+        return cls(owner_code, contents=None)
+
+    @classmethod:
+    def create_with_items(cls, owner_code, items):
+        return cls(owner_code, contents=list(items))
+
+    def __init__(self, owner_code, contents):
+        self.owner_code = owner_code
+        self.contents = contents
+        self.serial = ShippingContainer._get_next_serial()
+```
+
+#### Properties
+Property decorators can convert methods into something that when accessed, behaves like an attribute. Can be used to call getter methods so that they can be used as attributes.
+
+```python
+@property
+def celsius(self):
+    return self._celsius
+
+>>> r4 = RefrigeratedShippingContainer.create_with_items('YML', ['fish'], celsius=-18.0)
+>>> r4.celsius
+-18.0
+```
+
+```python
+@celsius.setter
+def celsius(self, value):
+    if value > RefrigeratedShippingContainer.MAX_CELSIUS:
+        raise ValueError('Temperature too hot!')
+    self._celsius = value
 ```
 

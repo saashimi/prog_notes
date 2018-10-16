@@ -64,3 +64,8 @@ Account acct; // Declares an object with a default constructor.
 
 Account acct(); // Actually declares a function!
 ```
+
+### Const keyword
+```cpp
+const int amount = 90;
+```
