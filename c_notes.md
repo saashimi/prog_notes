@@ -198,3 +198,10 @@ There are lots of reasons why the 2nd method is better, particularly if you're w
 disclaimer:
 
 I retired several years back and my C is a bit rusty now. This demo code should all compile properly with C (it is ok for any C++ compiler though).
+
+### TODO:
+- Mutators
+- Structs
+- Arrow notation ->
+- Header files
+- Multifile projects
