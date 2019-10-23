@@ -11,6 +11,22 @@ for ( i = 1; i < 101; i++ ) {
 ### Pointers
 A pointer is a variable whose value is the address of another variable, i.e.,
 the direct address of the memory location.
+
+Note: Sometimes the notation is confusing, because different textbooks place the * differently.  The three following declarations are equivalent:
+```c
+int *p;
+int* p; 
+int * p; 
+```
+
+Note: The notation can be a little confusing.
+
+- If you see the * in a declaration statement, with a type in front of the *, a pointer is being declared for the first time.
+- AFTER that, when you see the * on the pointer name, you are dereferencing the pointer to get to the target.
+
+
+
+
 ```c
 #include <stdio.h>
 
