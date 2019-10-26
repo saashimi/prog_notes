@@ -137,6 +137,25 @@ But if not explicitly called out, the default behavior in C# is to make methods
 public static float MinimumGrade = 0
 public static float MaximumGrade = 100
 ```
+`partial` classes in the same namespace can "see" each other--even though they're in different files. A class can span multiple files, too, but you need to use the partial keyword when you declare it. The _only_ way to break up a class into multiple files is to use the `partial` keyword.
+
+
+```csharp
+// SomeClasses.cs
+partial class Cat {
+    public void Meow() {
+        // Some statements
+    }
+}
+
+// SomeMoreClasses.cs
+partial class Cat {
+    public void Purr() {
+        // statements
+    }
+}
+```
+
 
 ```csharp
 public GradeStatistics ComputeStatistics()
@@ -543,3 +562,9 @@ K. Scott Allen prefers interfaces over abstract base classes.
 * `IEnumerable`, Supports iteration
 * `INotifyPropertyChange`, Raises events when properties change
 * `IComparable`, Compares for sorting
+
+#### Debugging
+Right click on a line of codeor click on the margin to insert a breakpoint. `F5` to start debugging.\
+As soon as the program gets to the line of code that has the breakpoint, the IDE brings up the code editor and highlights the current line of code.
+Right click on a variable and choose Expression -> Variable -> Add Watch to see the value of the variable progress as the program carries on. 
+Press `F10` to step through code.
