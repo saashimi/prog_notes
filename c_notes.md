@@ -215,9 +215,13 @@ disclaimer:
 
 I retired several years back and my C is a bit rusty now. This demo code should all compile properly with C (it is ok for any C++ compiler though).
 
+### Arrow operator
+`foo->bar` is equivalent to `(*foo).bar`, i.e. it gets the member called `bar` from the struct that `foo` points to.
+
+
+
 ### TODO:
 - Mutators
 - Structs
-- Arrow notation ->
 - Header files
 - Multifile projects
