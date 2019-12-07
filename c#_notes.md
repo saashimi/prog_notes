@@ -564,7 +564,10 @@ K. Scott Allen prefers interfaces over abstract base classes.
 * `IComparable`, Compares for sorting
 
 #### Debugging
-Right click on a line of codeor click on the margin to insert a breakpoint. `F5` to start debugging.\
+Right click on a line of code or click on the margin to insert a breakpoint. `F5` to start debugging.\
 As soon as the program gets to the line of code that has the breakpoint, the IDE brings up the code editor and highlights the current line of code.
 Right click on a variable and choose Expression -> Variable -> Add Watch to see the value of the variable progress as the program carries on. 
 Press `F10` to step through code.
+
+#### Notes on casing
+camelCase is used for private fields and PascalCase for the public fields.
