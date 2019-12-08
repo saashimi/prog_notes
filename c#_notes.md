@@ -117,6 +117,22 @@ public GradeBook()
 ```
 `ctor + TAB` will cause Visual Studio to generate the constructor code.
 
+A property can be used to get or set a `backing field`, which is just a name for a field set by a property. 
+```c#
+private int numberOfCows; // this is the backing field 
+public int NumberOfCows{
+    get {
+        // stuff
+        return stuff
+    };
+    set {
+        numberOfCows = value;
+    };
+};
+```
+
+Constructors don't return anything, so there's no return type. e.g. 
+
 Remember the differences between classes vs variables
 * A class is a blueprint for creating objects.
 * A class can also be used to type a variable
@@ -222,7 +238,7 @@ Strings behave like a value type.
 string name = " SomeName ";
 name.Trim();
 ```
-This is wrong. 
+The above is wrong. 
 
 ```csharp
 string name = " SomeName ";
@@ -520,7 +536,7 @@ public class B : A
     }
 }
 ```
-`virtual` type and `override` type.
+`virtual` type and `override` type. If you want to override a method in a base class, always mark it with the virtual keyword, and always use the override keyword any time you want to override the method ina subclass. If you don't, you'll end up accidentally hiding methods instead.
 
 ### Abstract Classes
 Abstract classes cannot be instantiated.
@@ -570,4 +586,4 @@ Right click on a variable and choose Expression -> Variable -> Add Watch to see 
 Press `F10` to step through code.
 
 #### Notes on casing
-camelCase is used for private fields and PascalCase for the public fields.
+camelCase is used for private fields and PascalCase for the public fields. Alternatively, some developers use underscores for private fields _camelCase.
